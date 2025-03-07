@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<body>
+    <form id="taskForm">
+        <input id="taskInput" type="text" placeholder="Type here">
+        <button type="submit">Add</button>
+    </form>
+    <div>
+        <ul id="taskList">
+
+        </ul>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const taskForm = document.getElementById('taskForm');
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        taskForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (taskInput.value.trim() !== '') {
+                const newTask = document.createElement('li');
+                newTask.textContent = taskInput.value;
+                newTask.classList.add('task');
+                newTask.addEventListener('click', () => {
+                    newTask.classList.toggle('completed');
+                });
+                taskList.appendChild(newTask);
+                taskInput.value ='';
+            }
+        });
+    });
+</script>
+
+</html>
